@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Monitoring Feedback Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-save {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-print {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-clear {
+            background: #f56565;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .button-group {
+                display: none;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            textarea {
+                border: 1px solid #333;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Product Monitoring Feedback Form</h1>
+        </div>
+
+        <form id="feedbackForm">
+            <!-- Section C: Product Information -->
+            <div class="section">
+                <div class="section-title">Section C: Product Information</div>
+
+                <div class="question">
+                    <label class="question-label">1. Product Selected for Monitoring</label>
+                    <input type="text" name="product_selected" value="Fill Pac Bucket Elevator" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Bucket Elevator – 1: Product Information</label>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">1. What is the type of the elevator?<br>(Example: Cement Silo, Clinker
+                        Transfer, etc.)</label>
+                    <input type="text" name="elevator_type" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">2. Date of Product Installation:</label>
+                    <input type="date" name="installation_date" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">3. Is the elevator working efficiently?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="efficient_yes" name="efficient" value="yes" />
+                            <label for="efficient_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="efficient_no" name="efficient" value="no" />
+                            <label for="efficient_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">4. Any belt slippage issues?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="slippage_yes" name="slippage" value="yes" />
+                            <label for="slippage_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="slippage_no" name="slippage" value="no" />
+                            <label for="slippage_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">5. Are maintenance costs acceptable?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="costs_yes" name="costs" value="yes" />
+                            <label for="costs_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="costs_no" name="costs" value="no" />
+                            <label for="costs_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">6. What all documents are provided to you?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_edoc" name="documents" value="eDoc" />
+                            <label for="doc_edoc">eDoc</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_elara" name="documents" value="Elara" />
+                            <label for="doc_elara">Elara</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_insight" name="documents" value="BG Insight" />
+                            <label for="doc_insight">BG Insight</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_publisher" name="documents" value="Parts Publisher" />
+                            <label for="doc_publisher">Parts Publisher</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_predict" name="documents" value="BG Predict" />
+                            <label for="doc_predict">BG Predict</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="doc_hotline" name="documents" value="Hotline" />
+                            <label for="doc_hotline">Hotline</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">7. Suggestions to improve Bucket Elevator performance:</label>
+                    <textarea name="suggestions_elevator"></textarea>
+                </div>
+            </div>
+
+            <!-- Section D: FillPac OEE Dashboard -->
+            <div class="section">
+                <div class="section-title">Section D: FillPac – OEE Dashboard Feedback</div>
+
+                <div class="question">
+                    <label class="question-label">1. Is the data shown in the dashboard accurate for OEE?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="oee_yes" name="oee_accurate" value="yes" />
+                            <label for="oee_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="oee_no" name="oee_accurate" value="no" />
+                            <label for="oee_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">2. Is the data shown in the dashboard accurate for
+                        Performance?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="perf_yes" name="performance_accurate" value="yes" />
+                            <label for="perf_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="perf_no" name="performance_accurate" value="no" />
+                            <label for="perf_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">3. Is the data shown in the dashboard accurate for Quality?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="qual_yes" name="quality_accurate" value="yes" />
+                            <label for="qual_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="qual_no" name="quality_accurate" value="no" />
+                            <label for="qual_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">4. Is the data shown in the dashboard accurate for
+                        Availability?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="avail_yes" name="availability_accurate" value="yes" />
+                            <label for="avail_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="avail_no" name="availability_accurate" value="no" />
+                            <label for="avail_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">5. Does the total count of bags produced match the dashboard
+                        value?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="bags_yes" name="bags_match" value="yes" />
+                            <label for="bags_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bags_no" name="bags_match" value="no" />
+                            <label for="bags_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">6. Is the data updated frequently enough to support your
+                        operations?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="freq_yes" name="data_frequency" value="yes" />
+                            <label for="freq_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq_no" name="data_frequency" value="no" />
+                            <label for="freq_no">No</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freq_notsure" name="data_frequency" value="not_sure" />
+                            <label for="freq_notsure">Not sure</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">7. Does the dashboard help you identify and act on bottlenecks in the
+                        FillPac process?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="bottle_always" name="bottlenecks" value="always" />
+                            <label for="bottle_always">Always</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bottle_sometimes" name="bottlenecks" value="sometimes" />
+                            <label for="bottle_sometimes">Sometimes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bottle_rarely" name="bottlenecks" value="rarely" />
+                            <label for="bottle_rarely">Rarely</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bottle_never" name="bottlenecks" value="never" />
+                            <label for="bottle_never">Never</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">8. Which metric do you find most useful for improving FillPac
+                        efficiency?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="metric_avail" name="useful_metric" value="availability" />
+                            <label for="metric_avail">Availability</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="metric_perf" name="useful_metric" value="performance" />
+                            <label for="metric_perf">Performance</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="metric_qual" name="useful_metric" value="quality" />
+                            <label for="metric_qual">Quality</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">9. Are any key features missing in the dashboard?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="missing_yes" name="missing_features" value="yes" />
+                            <label for="missing_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="missing_no" name="missing_features" value="no" />
+                            <label for="missing_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">10. What additional visualizations or reports would help you better
+                        understand FillPac performance?</label>
+                    <textarea name="additional_viz"></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">11. Do you receive alerts or notifications when OEE drops below target
+                        levels?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="alerts_yes" name="alerts" value="yes" />
+                            <label for="alerts_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="alerts_no" name="alerts" value="no" />
+                            <label for="alerts_no">No</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="alerts_notrequired" name="alerts" value="not_required" />
+                            <label for="alerts_notrequired">Not required</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">12. The fault and idle time information provided helps reduce
+                        downtime.</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="fault_yes" name="fault_info" value="yes" />
+                            <label for="fault_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="fault_no" name="fault_info" value="no" />
+                            <label for="fault_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">13. The bag information provided helps reduce busted bags and improve
+                        packer quality.</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="bag_yes" name="bag_info" value="yes" />
+                            <label for="bag_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="bag_no" name="bag_info" value="no" />
+                            <label for="bag_no">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">14. Any other comments or improvement suggestions?</label>
+                    <textarea name="other_comments"></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">15. Is the dashboard user-friendly and easy to navigate?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="nav_veryeasy" name="navigation" value="very_easy" />
+                            <label for="nav_veryeasy">Very easy</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="nav_easy" name="navigation" value="somewhat_easy" />
+                            <label for="nav_easy">Somewhat easy</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="nav_neutral" name="navigation" value="neutral" />
+                            <label for="nav_neutral">Neutral</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="nav_diff" name="navigation" value="difficult" />
+                            <label for="nav_diff">Difficult</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="nav_verydiff" name="navigation" value="very_difficult" />
+                            <label for="nav_verydiff">Very difficult</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section E: Bucket Elevator Condition Monitoring -->
+            <div class="section">
+                <div class="section-title">Section E: Bucket Elevator – Condition Monitoring Dashboard Feedback</div>
+
+                <div class="question">
+                    <label class="question-label">1. How would you rate your understanding of the condition monitoring
+                        system implemented?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="under_exc" name="understanding" value="excellent" />
+                            <label for="under_exc">Excellent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="under_good" name="understanding" value="good" />
+                            <label for="under_good">Good</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="under_avg" name="understanding" value="average" />
+                            <label for="under_avg">Average</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="under_poor" name="understanding" value="poor" />
+                            <label for="under_poor">Poor</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">2. How effective has condition monitoring been in identifying issues
+                        before failure?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="eff_yes" name="effectiveness" value="effective" />
+                            <label for="eff_yes">Effective</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="eff_no" name="effectiveness" value="not_effective" />
+                            <label for="eff_no">Not effective</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">3. How satisfied are you with the training provided for using the
+                        condition monitoring tools?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="train_verysat" name="training" value="very_satisfied" />
+                            <label for="train_verysat">Very satisfied</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="train_sat" name="training" value="satisfied" />
+                            <label for="train_sat">Satisfied</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="train_neutral" name="training" value="neutral" />
+                            <label for="train_neutral">Neutral</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="train_dissat" name="training" value="dissatisfied" />
+                            <label for="train_dissat">Dissatisfied</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">4. How user-friendly is the condition monitoring
+                        dashboard/system?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="sys_veryeasy" name="system_friendly" value="very_easy" />
+                            <label for="sys_veryeasy">Very easy</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="sys_moderate" name="system_friendly" value="moderate" />
+                            <label for="sys_moderate">Moderate</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="sys_difficult" name="system_friendly" value="difficult" />
+                            <label for="sys_difficult">Difficult</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">5. How often do you use the condition monitoring system to check
+                        equipment health?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="use_daily" name="usage_frequency" value="daily" />
+                            <label for="use_daily">Daily</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="use_weekly" name="usage_frequency" value="weekly" />
+                            <label for="use_weekly">Weekly</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="use_monthly" name="usage_frequency" value="monthly" />
+                            <label for="use_monthly">Monthly</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="use_rarely" name="usage_frequency" value="rarely" />
+                            <label for="use_rarely">Rarely</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">6. Do you think the implementation of condition monitoring has reduced
+                        breakdowns?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="break_yes" name="reduced_breakdowns" value="yes" />
+                            <label for="break_yes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="break_somewhat" name="reduced_breakdowns" value="somewhat" />
+                            <label for="break_somewhat">Somewhat</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="break_notyet" name="reduced_breakdowns" value="not_yet" />
+                            <label for="break_notyet">Not yet</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">7. How would you rate the post-installation support and service
+                        related to condition monitoring?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="supp_exc" name="support" value="excellent" />
+                            <label for="supp_exc">Excellent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="supp_good" name="support" value="good" />
+                            <label for="supp_good">Good</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="supp_avg" name="support" value="average" />
+                            <label for="supp_avg">Average</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="supp_poor" name="support" value="poor" />
+                            <label for="supp_poor">Poor</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">8. Suggestions for improvement:</label>
+                    <textarea name="suggestions_monitoring"></textarea>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-save" onclick="saveAsPDF()">Save as PDF</button>
+                <button type="button" class="btn-print" onclick="printForm()">Print</button>
+                <button type="button" class="btn-clear" onclick="clearForm()">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        function saveAsPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            let yPos = 20;
+            const lineHeight = 6;
+            const pageHeight = doc.internal.pageSize.height;
+            const margin = 20;
+            const maxWidth = 170;
+
+            function checkPageBreak(additionalSpace = 10) {
+                if (yPos + additionalSpace > pageHeight - margin) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+            }
+
+            function wrapText(text, maxWidth) {
+                return doc.splitTextToSize(text, maxWidth);
+            }
+
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('Product Monitoring Feedback Form', 105, yPos, { align: 'center' });
+            yPos += 12;
+
+            const form = document.getElementById('feedbackForm');
+            const sections = form.querySelectorAll('.section');
+
+            sections.forEach(section => {
+                checkPageBreak(15);
+
+                const sectionTitle = section.querySelector('.section-title').textContent;
+                doc.setFontSize(12);
+                doc.setFont(undefined, 'bold');
+                doc.setFillColor(102, 126, 234);
+                doc.rect(15, yPos - 5, 180, 8, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.text(sectionTitle, 20, yPos);
+                doc.setTextColor(0, 0, 0);
+                yPos += 10;
+
+                const questions = section.querySelectorAll('.question');
+                questions.forEach(question => {
+                    checkPageBreak();
+
+                    const label = question.querySelector('.question-label');
+                    if (label) {
+                        doc.setFontSize(10);
+                        doc.setFont(undefined, 'bold');
+                        const labelLines = wrapText(label.textContent, maxWidth);
+                        labelLines.forEach(line => {
+                            checkPageBreak();
+                            doc.text(line, 20, yPos);
+                            yPos += lineHeight;
+                        });
+                    }
+
+                    // Get answer
+                    let answer = '';
+                    const textInput = question.querySelector('input[type="text"], input[type="date"]');
+                    const textarea = question.querySelector('textarea');
+                    const radioChecked = question.querySelector('input[type="radio"]:checked');
+                    const checkboxes = question.querySelectorAll('input[type="checkbox"]:checked');
+
+                    if (textInput && textInput.value) {
+                        answer = textInput.value;
+                    } else if (textarea && textarea.value) {
+                        answer = textarea.value;
+                    } else if (radioChecked) {
+                        const radioLabel = question.querySelector(`label[for="${radioChecked.id}"]`);
+                        answer = radioLabel ? radioLabel.textContent : radioChecked.value;
+                    } else if (checkboxes.length > 0) {
+                        const checkedValues = Array.from(checkboxes).map(cb => {
+                            const cbLabel = question.querySelector(`label[for="${cb.id}"]`);
+                            return cbLabel ? cbLabel.textContent : cb.value;
+                        });
+                        answer = checkedValues.join(', ');
+                    }
+
+                    if (answer) {
+                        doc.setFont(undefined, 'normal');
+                        const answerLines = wrapText('Answer: ' + answer, maxWidth);
+                        answerLines.forEach(line => {
+                            checkPageBreak();
+                            doc.text(line, 20, yPos);
+                            yPos += lineHeight;
+                        });
+                    }
+
+                    yPos += 3;
+                });
+
+                yPos += 5;
+            });
+
+            // Save the PDF
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+            doc.save(`Feedback_Form_${timestamp}.pdf`);
+        }
+
+        function printForm() {
+            window.print();
+        }
+
+        function clearForm() {
+            if (confirm('Are you sure you want to clear all form data? This action cannot be undone.')) {
+                document.getElementById('feedbackForm').reset();
+            }
+        }
+    </script>
+</body>
+
+</html>
