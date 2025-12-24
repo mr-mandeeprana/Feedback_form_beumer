@@ -13,8 +13,10 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            background-image:
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1d5db' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             padding: 20px;
             min-height: 100vh;
         }
@@ -22,67 +24,108 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            background: transparent;
         }
 
         .header {
+            background: white;
             text-align: center;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
         }
 
         h1 {
-            color: #333;
+            color: #1e3a8a;
             font-size: 28px;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .required {
+            color: #e53e3e;
+            margin-left: 3px;
         }
 
         .section {
-            margin-bottom: 35px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
         }
 
         .section-title {
-            background: #667eea;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            color: #1e3a8a;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: left;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 15px;
         }
 
         .question {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .question-label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 500;
+            margin-bottom: 12px;
+            color: #1e3a8a;
+            font-weight: 600;
             font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .required {
+            color: #dc2626;
+            font-weight: bold;
         }
 
         input[type="text"],
+        input[type="email"],
         input[type="date"],
+        select,
         textarea {
             width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
             font-size: 14px;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            background-color: #f9fafb;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a8a' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
         }
 
         input[type="text"]:focus,
+        input[type="email"]:focus,
         input[type="date"]:focus,
+        select:focus,
         textarea:focus {
             outline: none;
             border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         textarea {
@@ -108,14 +151,16 @@
 
         input[type="radio"],
         input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
+            margin-right: 8px;
         }
 
         label {
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
+            color: #333;
         }
 
         .button-group {
@@ -123,8 +168,7 @@
             gap: 15px;
             justify-content: center;
             margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #eee;
+            padding: 30px 0;
         }
 
         button {
@@ -215,108 +259,300 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Product Monitoring Feedback Form</h1>
+            <img src="image.png" alt="Company Logo" class="logo" />
+            <h1>Beumer Digitalization</h1>
+            <h1>Customer Feedback Form</h1>
         </div>
 
         <form id="feedbackForm">
+            <!-- Section A: Company / Plant Details -->
+            <div class="section">
+                <div class="section-title">Section A: Company / Plant Details</div>
+
+                <div class="question">
+                    <label class="question-label">Country: <span class="required">*</span></label>
+                    <select name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="USA">USA</option>
+                        <option value="Germany">Germany</option>
+                        <option value="China">China</option>
+                        <option value="UK">UK</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Company Name <span class="required">**</span></label>
+                    <select name="company_name" required>
+                        <option value="">Select Company</option>
+                        <option value="ACC">ACC</option>
+                        <option value="Ambuja Cement">Ambuja Cement</option>
+                        <option value="UltraTech">UltraTech</option>
+                        <option value="Shree Cement">Shree Cement</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Plant Location: <span class="required">*</span></label>
+                    <input type="text" name="plant_location" required placeholder="Enter plant location" />
+                </div>
+            </div>
+
+            <!-- Section B: General Information -->
+            <div class="section">
+                <div class="section-title">Section B: General Information</div>
+
+                <div class="question">
+                    <label class="question-label">Contact Person's Name: <span class="required">*</span></label>
+                    <input type="text" name="contact_name" required />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Designation <span class="required">*</span></label>
+                    <select name="designation" required>
+                        <option value="">Select Designation</option>
+                        <option value="Maintenance Engineer">Maintenance Engineer</option>
+                        <option value="Plant Head">Plant Head</option>
+                        <option value="Mechanical Engineer">Mechanical Engineer</option>
+                        <option value="Head">Head</option>
+                        <option value="test data">test data</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Contact Number: <span class="required">*</span></label>
+                    <input type="text" name="contact_number" required />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Email ID: <span class="required">*</span></label>
+                    <input type="email" name="email_id" required />
+                </div>
+            </div>
+
             <!-- Section C: Product Information -->
             <div class="section">
                 <div class="section-title">Section C: Product Information</div>
 
                 <div class="question">
-                    <label class="question-label">1. Product Selected for Monitoring</label>
-                    <input type="text" name="product_selected" value="Fill Pac Bucket Elevator" />
-                </div>
-
-                <div class="question">
-                    <label class="question-label">Bucket Elevator – 1: Product Information</label>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">1. What is the type of the elevator?<br>(Example: Cement Silo, Clinker
-                        Transfer, etc.)</label>
-                    <input type="text" name="elevator_type" />
-                </div>
-
-                <div class="question">
-                    <label class="question-label">2. Date of Product Installation:</label>
-                    <input type="date" name="installation_date" />
-                </div>
-
-                <div class="question">
-                    <label class="question-label">3. Is the elevator working efficiently?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="efficient_yes" name="efficient" value="yes" />
-                            <label for="efficient_yes">Yes</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="efficient_no" name="efficient" value="no" />
-                            <label for="efficient_no">No</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">4. Any belt slippage issues?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="slippage_yes" name="slippage" value="yes" />
-                            <label for="slippage_yes">Yes</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="slippage_no" name="slippage" value="no" />
-                            <label for="slippage_no">No</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">5. Are maintenance costs acceptable?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="costs_yes" name="costs" value="yes" />
-                            <label for="costs_yes">Yes</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="costs_no" name="costs" value="no" />
-                            <label for="costs_no">No</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">6. What all documents are provided to you?</label>
+                    <label class="question-label">1. Product selected for Monitoring:</label>
                     <div class="checkbox-group">
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_edoc" name="documents" value="eDoc" />
-                            <label for="doc_edoc">eDoc</label>
+                            <input type="checkbox" id="product_fillpac" name="product_monitoring" value="Fill Pac" />
+                            <label for="product_fillpac">Fill Pac</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_elara" name="documents" value="Elara" />
-                            <label for="doc_elara">Elara</label>
+                            <input type="checkbox" id="product_bucket" name="product_monitoring"
+                                value="Bucket Elevator" />
+                            <label for="product_bucket">Bucket Elevator</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fill Pac Details -->
+                <div class="question">
+                    <label class="question-label"
+                        style="font-weight: bold; font-size: 16px; color: #667eea; margin-top: 20px;">Fill Pac
+                        Details</label>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">How many Fill Pac units do you have? <span
+                            class="required">*</span></label>
+                    <select name="fillpac_units_total">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">How many Fill Pac units have undergone OEE monitoring? <span
+                            class="required">*</span></label>
+                    <select name="fillpac_units_monitored">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label" style="font-weight: bold; margin-top: 15px;">FillPac-1 - Product
+                        Information</label>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">How many spouts does it have? <span class="required">*</span></label>
+                    <select name="fillpac_spouts">
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8" selected>8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Date of Product Installation: <span class="required">*</span></label>
+                    <input type="date" name="fillpac_installation_date" placeholder="dd-mm-yyyy" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">1A. What all services are provided to you?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="fillpac_edoc" name="fillpac_services" value="eDoc" />
+                            <label for="fillpac_edoc">eDoc</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_insight" name="documents" value="BG Insight" />
-                            <label for="doc_insight">BG Insight</label>
+                            <input type="checkbox" id="fillpac_elara" name="fillpac_services" value="Elara" />
+                            <label for="fillpac_elara">Elara</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_publisher" name="documents" value="Parts Publisher" />
-                            <label for="doc_publisher">Parts Publisher</label>
+                            <input type="checkbox" id="fillpac_insight" name="fillpac_services" value="BG Insight" />
+                            <label for="fillpac_insight">BG Insight</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_predict" name="documents" value="BG Predict" />
-                            <label for="doc_predict">BG Predict</label>
+                            <input type="checkbox" id="fillpac_publisher" name="fillpac_services"
+                                value="Parts Publisher" />
+                            <label for="fillpac_publisher">Parts Publisher</label>
                         </div>
                         <div class="checkbox-option">
-                            <input type="checkbox" id="doc_hotline" name="documents" value="Hotline" />
-                            <label for="doc_hotline">Hotline</label>
+                            <input type="checkbox" id="fillpac_predict" name="fillpac_services" value="BG Predict" />
+                            <label for="fillpac_predict">BG Predict</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="fillpac_hotline" name="fillpac_services" value="Hotline" />
+                            <label for="fillpac_hotline">Hotline</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bucket Elevator Details -->
+                <div class="question">
+                    <label class="question-label"
+                        style="font-weight: bold; font-size: 16px; color: #667eea; margin-top: 20px;">Bucket Elevator
+                        Details</label>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">How many Bucket Elevator units do you have? <span
+                            class="required">*</span></label>
+                    <select name="bucket_units_total">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">How many Bucket Elevator units have undergone condition monitoring?
+                        <span class="required">*</span></label>
+                    <select name="bucket_units_monitored">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label" style="font-weight: bold; margin-top: 15px;">BucketElevator-1 -
+                        Product Information</label>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">What is the type of the elevator? <span
+                            class="required">*</span></label>
+                    <input type="text" name="elevator_type"
+                        placeholder="Example: Cement Silo, Clinker Transfer, etc." />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">Date of Product Installation: <span class="required">*</span></label>
+                    <input type="date" name="bucket_installation_date" placeholder="dd-mm-yyyy" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">1B. Is the elevator working efficiently? <span
+                            class="required">*</span></label>
+                    <input type="text" name="efficient" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">2B. Any belt slippage issues? <span class="required">*</span></label>
+                    <input type="text" name="slippage" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">3B. Are maintenance costs acceptable? <span
+                            class="required">*</span></label>
+                    <input type="text" name="costs" />
+                </div>
+
+                <div class="question">
+                    <label class="question-label">4B. What all documents are provided to you?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_edoc" name="bucket_documents" value="eDoc" />
+                            <label for="bucket_edoc">eDoc</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_elara" name="bucket_documents" value="Elara" />
+                            <label for="bucket_elara">Elara</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_insight" name="bucket_documents" value="BG Insight" />
+                            <label for="bucket_insight">BG Insight</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_publisher" name="bucket_documents"
+                                value="Parts Publisher" />
+                            <label for="bucket_publisher">Parts Publisher</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_predict" name="bucket_documents" value="BG Predict" />
+                            <label for="bucket_predict">BG Predict</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="bucket_hotline" name="bucket_documents" value="Hotline" />
+                            <label for="bucket_hotline">Hotline</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="question">
-                    <label class="question-label">7. Suggestions to improve Bucket Elevator performance:</label>
+                    <label class="question-label">5B. Suggestions to improve Bucket Elevator performance?</label>
                     <textarea name="suggestions_elevator"></textarea>
                 </div>
             </div>
@@ -326,7 +562,8 @@
                 <div class="section-title">Section D: FillPac – OEE Dashboard Feedback</div>
 
                 <div class="question">
-                    <label class="question-label">1. Is the data shown in the dashboard accurate for OEE?</label>
+                    <label class="question-label">1. Is the data shown in the dashboard accurate for the OEE? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="oee_yes" name="oee_accurate" value="yes" />
@@ -340,8 +577,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">2. Is the data shown in the dashboard accurate for
-                        Performance?</label>
+                    <label class="question-label">2. Is the data shown in the dashboard accurate for Performance? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="perf_yes" name="performance_accurate" value="yes" />
@@ -355,7 +592,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">3. Is the data shown in the dashboard accurate for Quality?</label>
+                    <label class="question-label">3. Is the data shown in the dashboard accurate for Quality? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="qual_yes" name="quality_accurate" value="yes" />
@@ -369,8 +607,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">4. Is the data shown in the dashboard accurate for
-                        Availability?</label>
+                    <label class="question-label">4. Is the data shown in the dashboard accurate for Availability? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="avail_yes" name="availability_accurate" value="yes" />
@@ -384,8 +622,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">5. Does the total count of bags produced match the dashboard
-                        value?</label>
+                    <label class="question-label">5. Does the total count of bags produced match with the dashboard
+                        value? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="bags_yes" name="bags_match" value="yes" />
@@ -399,8 +637,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">6. Is the data updated frequently enough to support your
-                        operations?</label>
+                    <label class="question-label">6. Is the data updated frequently enough to support your operations?
+                        <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="freq_yes" name="data_frequency" value="yes" />
@@ -419,7 +657,7 @@
 
                 <div class="question">
                     <label class="question-label">7. Does the dashboard help you identify and act on bottlenecks in the
-                        FillPac process?</label>
+                        FillPac process? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="bottle_always" name="bottlenecks" value="always" />
@@ -442,7 +680,7 @@
 
                 <div class="question">
                     <label class="question-label">8. Which metric do you find most useful for improving FillPac
-                        efficiency?</label>
+                        efficiency? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="metric_avail" name="useful_metric" value="availability" />
@@ -460,7 +698,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">9. Are any key features missing in the dashboard?</label>
+                    <label class="question-label">9. Are any key features missing in the dashboard? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="missing_yes" name="missing_features" value="yes" />
@@ -481,7 +720,7 @@
 
                 <div class="question">
                     <label class="question-label">11. Do you receive alerts or notifications when OEE drops below target
-                        levels?</label>
+                        levels? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="alerts_yes" name="alerts" value="yes" />
@@ -500,7 +739,7 @@
 
                 <div class="question">
                     <label class="question-label">12. The fault and idle time information provided helps reduce
-                        downtime.</label>
+                        downtime. <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="fault_yes" name="fault_info" value="yes" />
@@ -515,7 +754,7 @@
 
                 <div class="question">
                     <label class="question-label">13. The bag information provided helps reduce busted bags and improve
-                        packer quality.</label>
+                        the packer quality. <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="bag_yes" name="bag_info" value="yes" />
@@ -534,7 +773,8 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">15. Is the dashboard user-friendly and easy to navigate?</label>
+                    <label class="question-label">15. Is the dashboard user-friendly and easy to navigate? <span
+                            class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="nav_veryeasy" name="navigation" value="very_easy" />
@@ -560,13 +800,13 @@
                 </div>
             </div>
 
-            <!-- Section E: Bucket Elevator Condition Monitoring -->
+            <!-- Section D: Bucket Elevator Condition Monitoring -->
             <div class="section">
-                <div class="section-title">Section E: Bucket Elevator – Condition Monitoring Dashboard Feedback</div>
+                <div class="section-title">Section D: Bucket Elevator - Condition Monitoring Dashboard Feedback</div>
 
                 <div class="question">
                     <label class="question-label">1. How would you rate your understanding of the condition monitoring
-                        system implemented?</label>
+                        system implemented? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="under_exc" name="understanding" value="excellent" />
@@ -589,7 +829,7 @@
 
                 <div class="question">
                     <label class="question-label">2. How effective has condition monitoring been in identifying issues
-                        before failure?</label>
+                        before failure? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="eff_yes" name="effectiveness" value="effective" />
@@ -597,18 +837,18 @@
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="eff_no" name="effectiveness" value="not_effective" />
-                            <label for="eff_no">Not effective</label>
+                            <label for="eff_no">Not Effective</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="question">
                     <label class="question-label">3. How satisfied are you with the training provided for using the
-                        condition monitoring tools?</label>
+                        condition monitoring tools? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="train_verysat" name="training" value="very_satisfied" />
-                            <label for="train_verysat">Very satisfied</label>
+                            <label for="train_verysat">Very Satisfied</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="train_sat" name="training" value="satisfied" />
@@ -626,12 +866,12 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">4. How user-friendly is the condition monitoring
-                        dashboard/system?</label>
+                    <label class="question-label">4. How user-friendly is the condition monitoring dashboard/system?
+                        <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="sys_veryeasy" name="system_friendly" value="very_easy" />
-                            <label for="sys_veryeasy">Very easy</label>
+                            <label for="sys_veryeasy">Very Easy</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="sys_moderate" name="system_friendly" value="moderate" />
@@ -646,7 +886,7 @@
 
                 <div class="question">
                     <label class="question-label">5. How often do you use the condition monitoring system to check
-                        equipment health?</label>
+                        equipment health? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="use_daily" name="usage_frequency" value="daily" />
@@ -669,7 +909,7 @@
 
                 <div class="question">
                     <label class="question-label">6. Do you think the implementation of condition monitoring has reduced
-                        breakdowns?</label>
+                        breakdowns? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="break_yes" name="reduced_breakdowns" value="yes" />
@@ -681,14 +921,14 @@
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="break_notyet" name="reduced_breakdowns" value="not_yet" />
-                            <label for="break_notyet">Not yet</label>
+                            <label for="break_notyet">Not Yet</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="question">
                     <label class="question-label">7. How would you rate the post-installation support and service
-                        related to condition monitoring?</label>
+                        related to condition monitoring? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="supp_exc" name="support" value="excellent" />
@@ -710,7 +950,7 @@
                 </div>
 
                 <div class="question">
-                    <label class="question-label">8. Suggestions for improvement:</label>
+                    <label class="question-label">8. Suggestions for Improvement</label>
                     <textarea name="suggestions_monitoring"></textarea>
                 </div>
             </div>
