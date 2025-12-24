@@ -259,7 +259,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://github.com/mr-mandeeprana/Feedback_form_beumer/blob/main/Logo-BEUMER-Group.webp?raw=true" alt="Company Logo" class="logo" />
+            <img src="image.png" alt="Company Logo" class="logo" />
             <h1>Beumer Digitalization</h1>
             <h1>Customer Feedback Form</h1>
         </div>
@@ -271,22 +271,33 @@
 
                 <div class="question">
                     <label class="question-label">Country: <span class="required">*</span></label>
-                    <select name="country" required>
+                    <select name="country" id="countrySelect" required>
                         <option value="">Select Country</option>
                         <option value="India">India</option>
-                    
+                        <option value="USA">USA</option>
+                        <option value="Germany">Germany</option>
+                        <option value="China">China</option>
+                        <option value="France">France</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="UAE">UAE</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="UK">UK</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
                     </select>
                 </div>
 
                 <div class="question">
                     <label class="question-label">Company Name <span class="required">**</span></label>
-                    <select name="company_name" required>
-                        <option value="">Select Company</option>
-                        <option value="ACC">ACC</option>
-                        <option value="Ambuja Cement">Ambuja Cement</option>
-                        <option value="UltraTech">UltraTech</option>
-                        <option value="Shree Cement">Shree Cement</option>
-                        <option value="Other">Other</option>
+                    <select name="company_name" id="companySelect" required>
+                        <option value="">Select Country First</option>
                     </select>
                 </div>
 
@@ -961,6 +972,58 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+        // Country and Company Data (matching your Angular component)
+        const countriesWithCompanies = {
+            'India': ['UltraTech', 'ACC', 'Ambuja', 'Shree Cement', 'Dalmia Bharat', 'JK Cement', 'Ramco Cements', 'India Cements', 'Birla Corporation', 'Orient Cement', 'Other'],
+            'USA': ['Cemex USA', 'Lafarge North America', 'Lehigh Hanson', 'Ash Grove Cement', 'CalPortland', 'Argos USA', 'Martin Marietta', 'Eagle Materials', 'Other'],
+            'Germany': ['HeidelbergCement', 'Dyckerhoff', 'Schwenk Zement', 'Holcim Germany', 'Opterra', 'Spenner Zement', 'Other'],
+            'China': ['Anhui Conch', 'CNBM', 'Sinoma', 'Jidong Development', 'Taiyuan Lionhead Cement', 'Tianshan Cement', 'Huaxin Cement', 'Tangshan Jidong Cement', 'Other'],
+            'France': ['Lafarge', 'Vicat', 'Holcim France', 'Calcia', 'Ciments Kercim', 'Other'],
+            'Brazil': ['Votorantim Cimentos', 'InterCement', 'CSN Cimentos', 'Cimento Apodi', 'Cimpor', 'Other'],
+            'Japan': ['Taiheiyo Cement', 'Sumitomo Osaka Cement', 'Ube Industries', 'Tokuyama Cement', 'Mitsubishi Materials', 'Other'],
+            'Mexico': ['Cemex', 'Moctezuma Cement', 'Cruz Azul Cement', 'LafargeHolcim Mexico', 'Other'],
+            'Nigeria': ['Dangote Cement', 'BUA Cement', 'Lafarge Africa', 'UNICEM', 'Ashaka Cement', 'Other'],
+            'Thailand': ['Siam Cement Group (SCG)', 'TPI Polene', 'Siam City Cement', 'INSEE Cement Thailand', 'Other'],
+            'UAE': ['National Cement Co.', 'Union Cement Company', 'Gulf Cement Company', 'RAK Cement', 'Sharjah Cement Factory', 'Other'],
+            'Italy': ['Buzzi Unicem', 'Italcementi', 'Cementir Holding', 'Colacem', 'Other'],
+            'Russia': ['Eurocement Group', 'Novoroscement', 'Sibtsem', 'Mordovcement', 'Other'],
+            'Malaysia': ['YTL Cement', 'CIMA (Cement Industries of Malaysia)', 'Lafarge Malaysia', 'Tasek Corporation', 'Other'],
+            'South Africa': ['PPC Ltd', 'AfriSam', 'Lafarge South Africa', 'NPC InterCement', 'Other'],
+            'UK': ['Breedon Group', 'Tarmac', 'Hanson UK', 'Cemex UK', 'Hope Cement', 'Other'],
+            'Canada': ['Lafarge Canada', 'St Marys Cement', 'Lehigh Hanson Canada', 'Ash Grove Canada', 'Other'],
+            'Australia': ['Adbri Limited', 'Boral Cement', 'Cement Australia', 'Independent Cement & Lime', 'Other']
+        };
+
+        // Update company dropdown when country changes
+        document.addEventListener('DOMContentLoaded', function () {
+            const countrySelect = document.getElementById('countrySelect');
+            const companySelect = document.getElementById('companySelect');
+
+            countrySelect.addEventListener('change', function () {
+                const selectedCountry = this.value;
+
+                // Clear existing options
+                companySelect.innerHTML = '<option value="">Select Company</option>';
+
+                // Populate with companies for selected country
+                if (selectedCountry && countriesWithCompanies[selectedCountry]) {
+                    countriesWithCompanies[selectedCountry].forEach(company => {
+                        const option = document.createElement('option');
+                        option.value = company;
+                        option.textContent = company;
+                        companySelect.appendChild(option);
+                    });
+                    companySelect.disabled = false;
+                } else {
+                    companySelect.innerHTML = '<option value="">Select Country First</option>';
+                    companySelect.disabled = true;
+                }
+            });
+
+            // Initially disable company select
+            companySelect.disabled = true;
+        });
+
         function saveAsPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
