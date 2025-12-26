@@ -728,7 +728,7 @@
                     <textarea name="additional_viz"></textarea>
                 </div>
 
-               
+
 
                 <div class="question">
                     <label class="question-label">11. The fault and idle time information provided helps reduce
@@ -1023,12 +1023,18 @@
                     // Get answer
                     let answer = '';
                     const textInput = question.querySelector('input[type="text"], input[type="date"]');
+                    const emailInput = question.querySelector('input[type="email"]');
+                    const selectElement = question.querySelector('select');
                     const textarea = question.querySelector('textarea');
                     const radioChecked = question.querySelector('input[type="radio"]:checked');
                     const checkboxes = question.querySelectorAll('input[type="checkbox"]:checked');
 
                     if (textInput && textInput.value) {
                         answer = textInput.value;
+                    } else if (emailInput && emailInput.value) {
+                        answer = emailInput.value;
+                    } else if (selectElement && selectElement.value) {
+                        answer = selectElement.options[selectElement.selectedIndex].text;
                     } else if (textarea && textarea.value) {
                         answer = textarea.value;
                     } else if (radioChecked) {
